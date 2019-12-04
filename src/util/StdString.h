@@ -767,7 +767,9 @@ inline const Type& SSMAX(const Type& arg1, const Type& arg2)
 
   #elif defined(_MSC_VER )
 
-    #define SS_USE_FACET(loc, fac) std::_USE(loc, fac)
+//https://developercommunity.visualstudio.com/content/problem/263793/msvc-141426428-xlocale-missing-use-macro.html#reply-265857
+// _USE() macro was intentionally removed.
+    #define SS_USE_FACET(loc, fac) std::use_facet<fac>(loc)
 
   // ...and
   #elif defined(_RWSTD_NO_TEMPLATE_ON_RETURN_TYPE)

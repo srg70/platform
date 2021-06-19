@@ -33,10 +33,7 @@
 
 #include "../os.h"
 
-#if defined(__APPLE__)
-#include <mach/mach_time.h>
-#include <CoreVideo/CVHostTime.h>
-#elif defined(__WINDOWS__)
+#if defined(__WINDOWS__)
 #include <time.h>
 #else
 #include <sys/time.h>
@@ -77,9 +74,7 @@ namespace P8PLATFORM
 
   inline int64_t GetTimeMs()
   {
-  #if defined(__APPLE__)
-    return (int64_t) (CVGetCurrentHostTime() / (int64_t)(CVGetHostClockFrequency() * 0.001));
-  #elif defined(__WINDOWS__)
+  #if defined(__WINDOWS__)
     LARGE_INTEGER tickPerSecond;
     LARGE_INTEGER tick;
     if (QueryPerformanceFrequency(&tickPerSecond))
